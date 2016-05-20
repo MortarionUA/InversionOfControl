@@ -10,13 +10,33 @@ var fs = require('fs'),
     vm = require('vm'),
     util = require('util');
 
+var logFile = 'logFile.log';
 var fileName = './application.js';
+
+function writeFile(message) {
+    fs.appendFile(logFile, message, (err) => {
+        if (err) {
+            return console.log(err);
+        }
+    })
+}
+
+function clearFile() {
+    fs.writeFile(logFile, '', err => {
+        if(err) {
+            return console.log(err);
+        }
+    })
+}
+
 var myConsole = {
     log:(message) => {
         var date = new Date;
-        console.log(fileName, date.toDateString(), message)
+        var fullMessage = `${fileName} ${date.toUTCString()} ${message}`;
+        console.log(fullMessage);
+        clearFile();
+        writeFile(fullMessage);
     }
-
 }
 
 // Создаем контекст-песочницу, которая станет глобальным контекстом приложения
