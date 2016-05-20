@@ -2,13 +2,9 @@
 // прикладного приложения, загружаемого в песочницу демонстрационным
 // кусочком фреймворка. Читайте README.md в нем задания.
 
-//Task 1
-function secondTimeout() {
-    util.log("secondTimeout");
-}
-setTimeout(secondTimeout, 1000)
+//Task 3
 
-function secondInterval() {
-    util.log("secondInterval");
-}
-secondInterval(secondInterval(), 1000)
+'use strict';
+
+const str = "Hello world";
+console.log(str);
