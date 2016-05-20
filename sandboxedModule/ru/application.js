@@ -4,11 +4,11 @@
 
 //Task 1
 function secondTimeout() {
-    console.log("secondTimeout");
+    util.log("secondTimeout");
 }
 setTimeout(secondTimeout, 1000)
 
 function secondInterval() {
-    console.log("secondInterval");
+    util.log("secondInterval");
 }
 secondInterval(secondInterval(), 1000)
