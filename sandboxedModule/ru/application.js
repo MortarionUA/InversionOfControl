@@ -2,10 +2,13 @@
 // прикладного приложения, загружаемого в песочницу демонстрационным
 // кусочком фреймворка. Читайте README.md в нем задания.
 
-// Вывод из глобального контекста модуля
-console.log('From application global context');
+//Task 1
+function secondTimeout() {
+    console.log("secondTimeout");
+}
+setTimeout(secondTimeout, 1000)
 
-module.exports = function() {
-  // Вывод из контекста экспортируемой функции
-  console.log('From application exported function');
-};
+function secondInterval() {
+    console.log("secondInterval");
+}
+secondInterval(secondInterval(), 1000)
