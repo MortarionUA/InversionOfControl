@@ -12,9 +12,9 @@ var fs = require('fs'),
 
 var logFile = 'logFile.log';
 var fileName = './application.js';
-
 function writeFile(message) {
-    fs.appendFile(logFile, message, (err) => {
+    console.log('write sucess');
+    fs.appendFile(logFile, `${message}\n`, (err) => {
         if (err) {
             return console.log(err);
         }
@@ -29,18 +29,17 @@ function clearFile() {
     })
 }
 
-var myConsole = {
-    log:(message) => {
-        var date = new Date;
-        var fullMessage = `${fileName} ${date.toUTCString()} ${message}`;
-        console.log(fullMessage);
-        clearFile();
-        writeFile(fullMessage);
-    }
-}
-
 // Создаем контекст-песочницу, которая станет глобальным контекстом приложения
-var context = { module: {}, console: myConsole, setTimeout: setTimeout, setInterval: setInterval, util: util };
+var context = { module: {}, setTimeout: setTimeout, setInterval: setInterval, util: util,
+    require:(module) => {
+        var date = new Date;
+        var text = `${date.toUTCString()} ${module}`;
+        console.log(text);
+        clearFile();
+        writeFile(text);
+        return require(module);
+    }
+};
 context.global = context;
 var sandbox = vm.createContext(context);
 
