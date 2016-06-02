@@ -5,3 +5,10 @@
 
 var util = require('util');
 
+module.exports = {
+    one: 111111,
+    two: 'Task7',
+    three: () => {
+        console.log('Task7');
+    }
+};
