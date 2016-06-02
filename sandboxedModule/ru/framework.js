@@ -60,6 +60,17 @@ function printHash(hash) {
     });
 }
 
+function printFunc(newFunc) {
+    const func = newFunc.toString();
+    const arrayOfString = func.split('(')[1].split(')')[0].split(',');
+    console.log('Parameters:');
+    arrayOfString.forEach((item) => {
+          item = item.trim();
+          console.log(`${item}`);
+        });
+    console.log(`Counter: ${arrayOfString.length}`);
+}
+
 // Читаем исходный код приложения из файла
 if (process.argv[2] !== undefined) {
     fileName = process.argv[2];
@@ -75,5 +86,6 @@ fs.readFile(fileName, function(err, src) {
   
   // Забираем ссылку из sandbox.module.exports, можем ее исполнить,
   // сохранить в кеш, вывести на экран исходный код приложения и т.д.
-    printHash(sandbox.module.exports)
+    printHash(sandbox.module.exports);
+    printFunc(sandbox.module.exports);
 });

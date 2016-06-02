@@ -5,10 +5,6 @@
 
 var util = require('util');
 
-module.exports = {
-    one: 111111,
-    two: 'Task7',
-    three: () => {
-        console.log('Task7');
-    }
+module.exports = function(par1, par2) {
+    console.log(`Task8`);
 };
