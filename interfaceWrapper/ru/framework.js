@@ -17,12 +17,28 @@ function cloneInterface(anInterface) {
     return clone;
 }
 
+function wrapCallbackFunction(fn){
+    return function wrapper(){
+        var args = [];
+        Array.prototype.push.apply(args, arguments);
+        console.console.log('Callback!');
+        for (var i = 0; i < array.length - 1; ++i) {
+            console.dir(typeof args[i] + ' - ' + args[i]);
+        }
+        args[i++]();
+    }
+}
+
 function wrapFunction(fnName, fn) {
     return function wrapper() {
         var args = [];
         Array.prototype.push.apply(args, arguments);
         console.log('Call: ' + fnName);
         console.dir(args);
+        var length = args.length;
+        if (typeof args[length - 1] == 'function') {
+            args[length - 1] = wrapCallbackFunction(args[length - 1]);
+        }
         return fn.apply(undefined, args);
     }
 }
