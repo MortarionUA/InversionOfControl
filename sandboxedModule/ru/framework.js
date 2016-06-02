@@ -52,10 +52,10 @@ var sandbox = vm.createContext(context);
 
 function printHash(hash) {
     Object.keys(hash).forEach((item)=>{
-        if(typeof hash[item] === 'object'){
+        if(typeof hash[item] === 'object' && item !== 'global'){
             printHash(hash[item]);
         } else {
-            console.log(`${typeof hash[item]} ${hash[item]}`);
+            console.log(`${typeof hash[item]} ${item}`);
         }
     });
 }
